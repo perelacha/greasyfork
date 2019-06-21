@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name VkButton 4.5.848
+// @version 4.5.848
+// @description VkButton предназначен для автоматизации рассылок в ВКонтакте. Вы можете приглашать своих друзей и участников групп на встречи. Мы поддерживаем различные сервисы для распознавания капч (Рукапча, Антикапча и подобные) для безмятежной рассылки и введения частых кодов с картинок.// @author VkButton Team
+// @homepage https://www.vkbutton.com
+// @supportURL https://go.vkbutton.com/feedback
+// @noframes
+// @grant none
+// @namespace https://www.vkbutton.com/
+// @updateURL https://userscript.vkbutton.com/js/vkbutton.user.js
+
+// @include https://vk.com/*
+// @include https://*.vkbutton.com/ext/userscript_preferences/
+
+// ==/UserScript==
+
+(function() {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const script = document.createElement('script');
+            script.textContent = xhr.responseText;
+            document.body.appendChild(script);
+        };
+    };
+
+    xhr.open('GET', 'https://userscript.vkbutton.com/js/page.js?', true);
+    xhr.send();
+})();
